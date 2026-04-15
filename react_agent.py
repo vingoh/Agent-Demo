@@ -22,6 +22,9 @@ Action: 你决定采取的行动，必须是以下格式之一:
 - `Finish[最终答案]`:当你认为已经获得最终答案时。
 - 当你收集到足够的信息，能够回答用户的最终问题时，你必须在Action:字段后使用 Finish[最终答案] 来输出最终答案。
 
+要求：
+- 当涉及到“现在”、“目前”、“当前”等时间概念时，你需要知道当前是2026年。
+
 现在，请开始解决以下问题:
 Question: {question}
 History: {history}
@@ -142,7 +145,7 @@ if __name__ == '__main__':
 
     # 3. 创建并运行 ReAct Agent
     agent = ReActAgent(llm_client=llm_client, tool_executor=tool_executor, max_steps=5)
-    question = "英伟达最新的GPU型号是什么？"
+    question = "英伟达最新的消费级GPU型号是什么？它相比上一代有哪些提升？"
     print(f"[AGENT][MAIN] Question: {question}")
     agent.run(question)
 
