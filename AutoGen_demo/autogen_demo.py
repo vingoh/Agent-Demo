@@ -1,7 +1,6 @@
 
 import os
 import asyncio
-from typing import List, Dict, Any
 from dotenv import load_dotenv
 
 # 加载环境变量
@@ -14,15 +13,12 @@ from autogen_agentchat.teams import RoundRobinGroupChat
 from autogen_agentchat.conditions import TextMentionTermination
 from autogen_agentchat.ui import Console
 
-load_dotenv()
-
 def create_openai_model_client():
     """创建并配置 OpenAI 模型客户端"""
-    model_name = os.getenv("LLM_MODEL_ID", "glm-5.1")
     return OpenAIChatCompletionClient(
-        model=model_name,
+        model=os.getenv("LLM_MODEL_ID"),
         api_key=os.getenv("LLM_API_KEY"),
-        base_url=os.getenv("LLM_BASE_URL", "https://api.openbitfun.com/v1"),
+        base_url=os.getenv("LLM_BASE_URL"),
         # 对第三方 OpenAI 兼容网关/自定义模型名，显式声明模型能力，
         # 避免出现: model_info is required when model name is not a valid OpenAI model
         model_info={
